@@ -5,5 +5,18 @@ This is useful when the object corresponding to the PhysBone is hard to find (e.
 PhysBoneコンポーネント類を\"Root Transform\"に設定されているゲームオブジェクトに再配置します。\
 1つのゲームオブジェクトに大量のPhysBoneコンポーネント類が含まれていて、対応するゲームオブジェクトが分かりづらい場合などに役に立ちます。(変換直後のVRoid製アバターなど)
 
+## Usage/使い方
+1. Open the window from Tools → PB Relocator at the top of the Editor window.
+2. Set the target GameObject, then press "Relocate!"
+
+You can Undo/Redo this operation.
+
+1. エディタ上側のTools → PB Relocatorから、ウィンドウを開きます。
+2. 対象のゲームオブジェクトをセットし、"Relocate!"ボタンを押します。
+
+この操作は元に戻したり、やり直したりする事が出来ます。
+
+---
+
 This repository is WIP.\
 このリポジトリは制作中です。
