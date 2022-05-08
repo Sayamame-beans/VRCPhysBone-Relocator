@@ -8,6 +8,7 @@ public class RelocatorWindow : EditorWindow{
     private static GameObject source = null;
     private bool wasMissingDetected = false;
 
+    private static readonly string version = "0.1.0";
     private static string lang = "en-US";
     private static readonly Dictionary<string, Dictionary<string, string>> texts = new Dictionary<string, Dictionary<string, string>>(){
         {"en-US", new Dictionary<string, string>(){
@@ -35,7 +36,7 @@ public class RelocatorWindow : EditorWindow{
 //methods
     [MenuItem("Tools/PB Relocator", false, 1)]
     public static void ShowWindow(){
-        RelocatorWindow window = GetWindow<RelocatorWindow>("PB Relocator");
+        RelocatorWindow window = GetWindow<RelocatorWindow>("PB Relocator v" + version);
     }
 
     private void OnGUI(){
