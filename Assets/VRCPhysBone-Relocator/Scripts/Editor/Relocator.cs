@@ -12,7 +12,7 @@ public class RelocatorWindow : EditorWindow{
     private static readonly Dictionary<string, Dictionary<string, string>> texts = new Dictionary<string, Dictionary<string, string>>(){
         {"en-US", new Dictionary<string, string>(){
             {"langSwitch", "Switch language to Japanese/日本語にする"},
-            {"summary", "Relocate the PhysBone and PhysBoneCollider Components to the object set in the \"Root Transform\".\nSet a GameObject which has the target PhysBone or PhysBoneCollider Components, and press \"Relocate\"."},
+            {"summary", "Relocate the PhysBone and PhysBoneCollider Components to the object set in the \"Root Transform\".\nSet a GameObject which has the target PhysBone or PhysBoneCollider Components, and press \"Relocate!\"."},
             {"msgWhenError", "\n\nIf this error is unexpected, please contact the author of this extension."},
             {"source", "Target GameObject"},
             {"noSource", "You need to set a GameObject."},
@@ -22,7 +22,7 @@ public class RelocatorWindow : EditorWindow{
         },
         {"ja-JP", new Dictionary<string, string>(){
             {"langSwitch", "Switch language to English/英語にする"},
-            {"summary", "PhysBoneコンポーネント類を\"Root Transform\"に設定されているゲームオブジェクトに再配置します。\n対象のPhysBoneコンポーネント類を含むゲームオブジェクトをセットし、\"Relocate\"ボタンを押してください。"},
+            {"summary", "PhysBoneコンポーネント類を\"Root Transform\"に設定されているゲームオブジェクトに再配置します。\n対象のPhysBoneコンポーネント類を含むゲームオブジェクトをセットし、\"Relocate!\"ボタンを押してください。"},
             {"msgWhenError", "\n\nこのエラーに心当たりが無い場合は、この拡張の作者に連絡してみてください。"},
             {"source", "対象のゲームオブジェクト"},
             {"noSource", "ゲームオブジェクトをセットする必要があります。"},
