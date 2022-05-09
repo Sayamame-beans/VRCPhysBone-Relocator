@@ -1,0 +1,9 @@
+{
+  "name": "com.github.sayamame-beans.vrcphysbone-relocator",
+  "version": "0.0.1",
+  "displayName": "VRCPhysBone-Relocator",
+  "author":{
+    "name": "Sayamame-beans",
+    "url": "https://github.com/Sayamame-beans"
+  }
+}
