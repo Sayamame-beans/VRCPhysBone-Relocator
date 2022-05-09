@@ -77,7 +77,7 @@ public class RelocatorWindow : EditorWindow{
     }
 
     private void relocatePhysBoneComponent(){
-        Component[] physbones = source.GetComponents(typeof(VRCPhysBone));
+        VRCPhysBone[] physbones = source.GetComponents<VRCPhysBone>();
         foreach(VRCPhysBone physbone in physbones){
             Transform rootTransform = physbone.rootTransform;
             if(rootTransform == null){//Missing or None
@@ -100,7 +100,7 @@ public class RelocatorWindow : EditorWindow{
     }
 
     private void relocatePhysBoneColliderComponent(){
-        Component[] physboneColliders = source.GetComponents(typeof(VRCPhysBoneCollider));
+        VRCPhysBoneCollider[] physboneColliders = source.GetComponents<VRCPhysBoneCollider>();
         foreach(VRCPhysBoneCollider physboneCollider in physboneColliders){
             Transform rootTransform = physboneCollider.rootTransform;
             if(rootTransform == null){//Missing or None
