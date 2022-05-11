@@ -7,12 +7,16 @@ PhysBoneコンポーネント類を\"Root Transform\"に設定されているゲ
 
 ## How to install/導入方法
 [EN]
-1. Download ZIP
-2. Extract zip file, then copy "VRCPhysBone-Relocator" in the "Assets" to your project.
+1. Open your unity project.
+2. Open the Package Manager from Window → Package Manager at the top of the Editor window.
+3. Click `+` at the upper left of the Package Manager window , then select `Add package from git URL...`.
+4. Enter `https://github.com/Sayamame-beans/VRCPhysBone-Relocator.git` , then press "Add".
 
 [JP]
-1. zipファイルをダウンロードします。
-2. zipファイルを展開し、"Assets"フォルダ内にある"VRCPhysBone-Relocator"フォルダをプロジェクトにコピー、またはドラッグ&ドロップします。
+1. Unityプロジェクトを開きます。
+2. エディタ上部のWindows → Package Managerから、Package Managerを開きます。
+3. Package Managerウィンドウの左上の`+`をクリックし、`Add package from git URL...`を選択します。
+4. `https://github.com/Sayamame-beans/VRCPhysBone-Relocator.git`と入力し、"Add"を押します。
 
 ## Usage/使い方
 1. Open the window from Tools → PB Relocator at the top of the Editor window.
@@ -20,7 +24,7 @@ PhysBoneコンポーネント類を\"Root Transform\"に設定されているゲ
 
 You can Undo/Redo this operation.
 
-1. エディタ上側のTools → PB Relocatorから、ウィンドウを開きます。
+1. エディタ上部のTools → PB Relocatorから、ウィンドウを開きます。
 2. 対象のゲームオブジェクトをセットし、"Relocate!"ボタンを押します。
 
 この操作は元に戻したり、やり直したりする事が出来ます。
