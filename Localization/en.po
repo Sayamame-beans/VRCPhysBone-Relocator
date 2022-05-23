@@ -1,0 +1,24 @@
+msgid ""
+msgstr ""
+"Language: en\n"
+
+msgid "summary"
+msgstr "PhysBoneコンポーネント類を\"Root Transform\"に設定されているゲームオブジェクトに再配置します。\n対象のPhysBoneコンポーネント類を含むゲームオブジェクトをセットし、\"Relocate!\"ボタンを押してください。"
+
+msgid "msgWhenError"
+msgstr "このエラーに心当たりが無い場合は、この拡張の作者に連絡してみてください。"
+
+msgid "source"
+msgstr "対象のゲームオブジェクト"
+
+msgid "noSource"
+msgstr "ゲームオブジェクトをセットする必要があります。"
+
+msgid "Succeeded-Missing"
+msgstr "成功しましたが、Root Transformがmissingになっているオブジェクトが見つかりました。\n確認することをお勧めします。"
+
+msgid "Succeeded"
+msgstr "成功"
+
+msgid "locale:en"
+msgstr "日本語"

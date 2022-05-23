@@ -5,5 +5,8 @@
   "author":{
     "name": "Sayamame-beans",
     "url": "https://github.com/Sayamame-beans"
+  },
+  "dependencies": {
+    "com.anatawa12.custom-localization-for-editor-extension": "0.1.2"
   }
 }
