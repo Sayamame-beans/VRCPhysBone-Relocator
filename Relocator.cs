@@ -6,8 +6,8 @@ using VRC.SDK3.Dynamics.PhysBone.Components;
 public class RelocatorWindow : EditorWindow
 {
 //properties
-    private static GameObject _source = null;
-    private bool _wasMissingDetected = false;
+    private static GameObject _source;
+    private bool _wasMissingDetected;
 
     private const string Version = "0.1.0";
     private static string _lang = "en-US";
@@ -51,21 +51,14 @@ public class RelocatorWindow : EditorWindow
     [MenuItem("Tools/PB Relocator", false, 1)]
     public static void ShowWindow()
     {
-        RelocatorWindow window = GetWindow<RelocatorWindow>("PB Relocator v" + Version);
+        GetWindow<RelocatorWindow>("PB Relocator v" + Version);
     }
 
     private void OnGUI()
     {
         if (GUILayout.Button(Texts[_lang]["langSwitch"]))
         {
-            if (_lang == "en-US")
-            {
-                _lang = "ja-JP";
-            }
-            else
-            {
-                _lang = "en-US";
-            }
+            _lang = _lang == "en-US" ? "ja-JP" : "en-US";
         }
 
         EditorGUILayout.LabelField(Texts[_lang]["summary"], EditorStyles.wordWrappedLabel);
@@ -81,7 +74,7 @@ public class RelocatorWindow : EditorWindow
             {
                 Undo.IncrementCurrentGroup();
                 Undo.SetCurrentGroupName("PB Relocation");
-                int undoIndex = Undo.GetCurrentGroup();
+                var undoIndex = Undo.GetCurrentGroup();
 
                 RelocatePhysBoneComponent();
                 RelocatePhysBoneColliderComponent();
@@ -108,21 +101,20 @@ public class RelocatorWindow : EditorWindow
 
     private void RelocatePhysBoneComponent()
     {
-        VRCPhysBone[] physBones = _source.GetComponents<VRCPhysBone>();
-        foreach (VRCPhysBone physBone in physBones)
+        foreach (var physBone in _source.GetComponents<VRCPhysBone>())
         {
-            Transform rootTransform = physBone.rootTransform;
+            var rootTransform = physBone.rootTransform;
             if (rootTransform == null)
             {
                 //Missing or None
-                SerializedProperty serializedProperty = new SerializedObject(physBone).FindProperty("rootTransform");
+                var serializedProperty = new SerializedObject(physBone).FindProperty("rootTransform");
                 if (serializedProperty.propertyType != SerializedPropertyType.ObjectReference ||
                     serializedProperty.objectReferenceValue != null)
                 {
                     continue;
                 }
 
-                SerializedProperty fileID = serializedProperty.FindPropertyRelative("m_FileID");
+                var fileID = serializedProperty.FindPropertyRelative("m_FileID");
                 if (fileID == null || fileID.intValue == 0)
                 {
                     continue;
@@ -142,15 +134,13 @@ public class RelocatorWindow : EditorWindow
 
     private void RelocatePhysBoneColliderComponent()
     {
-        VRCPhysBoneCollider[] physBoneColliders = _source.GetComponents<VRCPhysBoneCollider>();
-        foreach (VRCPhysBoneCollider physBoneCollider in physBoneColliders)
+        foreach (var physBoneCollider in _source.GetComponents<VRCPhysBoneCollider>())
         {
-            Transform rootTransform = physBoneCollider.rootTransform;
+            var rootTransform = physBoneCollider.rootTransform;
             if (rootTransform == null)
             {
                 //Missing or None
-                SerializedProperty serializedProperty =
-                    new SerializedObject(physBoneCollider).FindProperty("rootTransform");
+                var serializedProperty = new SerializedObject(physBoneCollider).FindProperty("rootTransform");
                 if (serializedProperty.propertyType != SerializedPropertyType.ObjectReference ||
                     serializedProperty.objectReferenceValue != null)
                 {
