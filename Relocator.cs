@@ -6,13 +6,13 @@ using VRC.SDK3.Dynamics.PhysBone.Components;
 public class RelocatorWindow : EditorWindow
 {
 //properties
-    private static GameObject source = null;
-    private bool wasMissingDetected = false;
+    private static GameObject _source = null;
+    private bool _wasMissingDetected = false;
 
-    private static readonly string version = "0.1.0";
-    private static string lang = "en-US";
+    private const string Version = "0.1.0";
+    private static string _lang = "en-US";
 
-    private static readonly Dictionary<string, Dictionary<string, string>> texts =
+    private static readonly Dictionary<string, Dictionary<string, string>> Texts =
         new Dictionary<string, Dictionary<string, string>>()
         {
             {
@@ -51,29 +51,29 @@ public class RelocatorWindow : EditorWindow
     [MenuItem("Tools/PB Relocator", false, 1)]
     public static void ShowWindow()
     {
-        RelocatorWindow window = GetWindow<RelocatorWindow>("PB Relocator v" + version);
+        RelocatorWindow window = GetWindow<RelocatorWindow>("PB Relocator v" + Version);
     }
 
     private void OnGUI()
     {
-        if (GUILayout.Button(texts[lang]["langSwitch"]))
+        if (GUILayout.Button(Texts[_lang]["langSwitch"]))
         {
-            if (lang == "en-US")
+            if (_lang == "en-US")
             {
-                lang = "ja-JP";
+                _lang = "ja-JP";
             }
             else
             {
-                lang = "en-US";
+                _lang = "en-US";
             }
         }
 
-        EditorGUILayout.LabelField(texts[lang]["summary"], EditorStyles.wordWrappedLabel);
+        EditorGUILayout.LabelField(Texts[_lang]["summary"], EditorStyles.wordWrappedLabel);
 
-        source = (GameObject)EditorGUILayout.ObjectField(texts[lang]["source"], source, typeof(GameObject), true);
-        if (source == null)
+        _source = (GameObject)EditorGUILayout.ObjectField(Texts[_lang]["source"], _source, typeof(GameObject), true);
+        if (_source == null)
         {
-            EditorGUILayout.LabelField(texts[lang]["noSource"]);
+            EditorGUILayout.LabelField(Texts[_lang]["noSource"]);
         }
         else if (GUILayout.Button("Relocate!"))
         {
@@ -83,39 +83,39 @@ public class RelocatorWindow : EditorWindow
                 Undo.SetCurrentGroupName("PB Relocation");
                 int undoIndex = Undo.GetCurrentGroup();
 
-                relocatePhysBoneComponent();
-                relocatePhysBoneColliderComponent();
+                RelocatePhysBoneComponent();
+                RelocatePhysBoneColliderComponent();
 
                 Undo.CollapseUndoOperations(undoIndex);
 
-                if (wasMissingDetected)
+                if (_wasMissingDetected)
                 {
-                    EditorUtility.DisplayDialog("Result", texts[lang]["Succeeded-Missing"], "OK");
-                    wasMissingDetected = false;
+                    EditorUtility.DisplayDialog("Result", Texts[_lang]["Succeeded-Missing"], "OK");
+                    _wasMissingDetected = false;
                 }
                 else
                 {
-                    EditorUtility.DisplayDialog("Result", texts[lang]["Succeeded"], "OK");
+                    EditorUtility.DisplayDialog("Result", Texts[_lang]["Succeeded"], "OK");
                 }
             }
             catch (System.Exception e)
             {
-                EditorUtility.DisplayDialog("Error", e.Message + texts[lang]["msgWhenError"], "OK");
+                EditorUtility.DisplayDialog("Error", e.Message + Texts[_lang]["msgWhenError"], "OK");
                 Debug.LogError(e);
             }
         }
     }
 
-    private void relocatePhysBoneComponent()
+    private void RelocatePhysBoneComponent()
     {
-        VRCPhysBone[] physbones = source.GetComponents<VRCPhysBone>();
-        foreach (VRCPhysBone physbone in physbones)
+        VRCPhysBone[] physBones = _source.GetComponents<VRCPhysBone>();
+        foreach (VRCPhysBone physBone in physBones)
         {
-            Transform rootTransform = physbone.rootTransform;
+            Transform rootTransform = physBone.rootTransform;
             if (rootTransform == null)
             {
                 //Missing or None
-                SerializedProperty serializedProperty = new SerializedObject(physbone).FindProperty("rootTransform");
+                SerializedProperty serializedProperty = new SerializedObject(physBone).FindProperty("rootTransform");
                 if (serializedProperty.propertyType != SerializedPropertyType.ObjectReference ||
                     serializedProperty.objectReferenceValue != null)
                 {
@@ -128,29 +128,29 @@ public class RelocatorWindow : EditorWindow
                     continue;
                 }
 
-                wasMissingDetected = true;
+                _wasMissingDetected = true;
                 Debug.LogWarning("Missing detected!");
             }
             else
             {
-                UnityEditorInternal.ComponentUtility.CopyComponent(physbone);
+                UnityEditorInternal.ComponentUtility.CopyComponent(physBone);
                 UnityEditorInternal.ComponentUtility.PasteComponentAsNew(rootTransform.gameObject);
-                Undo.DestroyObjectImmediate(physbone);
+                Undo.DestroyObjectImmediate(physBone);
             }
         }
     }
 
-    private void relocatePhysBoneColliderComponent()
+    private void RelocatePhysBoneColliderComponent()
     {
-        VRCPhysBoneCollider[] physboneColliders = source.GetComponents<VRCPhysBoneCollider>();
-        foreach (VRCPhysBoneCollider physboneCollider in physboneColliders)
+        VRCPhysBoneCollider[] physBoneColliders = _source.GetComponents<VRCPhysBoneCollider>();
+        foreach (VRCPhysBoneCollider physBoneCollider in physBoneColliders)
         {
-            Transform rootTransform = physboneCollider.rootTransform;
+            Transform rootTransform = physBoneCollider.rootTransform;
             if (rootTransform == null)
             {
                 //Missing or None
                 SerializedProperty serializedProperty =
-                    new SerializedObject(physboneCollider).FindProperty("rootTransform");
+                    new SerializedObject(physBoneCollider).FindProperty("rootTransform");
                 if (serializedProperty.propertyType != SerializedPropertyType.ObjectReference ||
                     serializedProperty.objectReferenceValue != null)
                 {
@@ -163,14 +163,14 @@ public class RelocatorWindow : EditorWindow
                     continue;
                 }
 
-                wasMissingDetected = true;
+                _wasMissingDetected = true;
                 Debug.LogWarning("Missing detected!");
             }
             else
             {
-                UnityEditorInternal.ComponentUtility.CopyComponent(physboneCollider);
+                UnityEditorInternal.ComponentUtility.CopyComponent(physBoneCollider);
                 UnityEditorInternal.ComponentUtility.PasteComponentAsNew(rootTransform.gameObject);
-                Undo.DestroyObjectImmediate(physboneCollider);
+                Undo.DestroyObjectImmediate(physBoneCollider);
             }
         }
     }
