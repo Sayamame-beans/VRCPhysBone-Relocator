@@ -3,22 +3,22 @@ msgstr ""
 "Language: en\n"
 
 msgid "summary"
-msgstr "PhysBoneコンポーネント類を\"Root Transform\"に設定されているゲームオブジェクトに再配置します。\n対象のPhysBoneコンポーネント類を含むゲームオブジェクトをセットし、\"Relocate!\"ボタンを押してください。"
+msgstr "Relocate the PhysBone and PhysBoneCollider Components to the object set in the \"Root Transform\".\nSet a GameObject which has the target PhysBone or PhysBoneCollider Components, and press \"Relocate!\"."
 
 msgid "msgWhenError"
-msgstr "このエラーに心当たりが無い場合は、この拡張の作者に連絡してみてください。"
+msgstr "If this error is unexpected, please contact the author of this extension."
 
 msgid "source"
-msgstr "対象のゲームオブジェクト"
+msgstr "Target GameObject"
 
 msgid "noSource"
-msgstr "ゲームオブジェクトをセットする必要があります。"
+msgstr "You need to set a GameObject."
 
 msgid "Succeeded-Missing"
-msgstr "成功しましたが、Root Transformがmissingになっているオブジェクトが見つかりました。\n確認することをお勧めします。"
+msgstr "Succeeded, but missing was detected.\nIt is recommended to check."
 
 msgid "Succeeded"
-msgstr "成功"
+msgstr "Succeeded!"
 
 msgid "locale:en"
-msgstr "日本語"
+msgstr "English"
