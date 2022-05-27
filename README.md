@@ -62,19 +62,7 @@ Link:
 clone this repository into `Packages` folder in your project.
 
 In addition, because this project depends on [CustomLocalization4EditorExtension], you need to
-add `"com.github.sayamame-beans.vrcphysbone-relocator": "https://github.com/anatawa12/CustomLocalization4EditorExtension.git"` or
-```json
-"scopedRegistries": [
-  {
-    "name": "OpenUPM",
-    "url": "https://package.openupm.com",
-    "scopes": [
-      "com.anatawa12"
-    ]
-  }
-]
-```
-
-into `manifest.json` of your project.
+add `"com.github.sayamame-beans.vrcphysbone-relocator": "https://github.com/anatawa12/CustomLocalization4EditorExtension.git"`
+into `dependencies` block of `manifest.json` of your project.
 
 [CustomLocalization4EditorExtension]: https://openupm.com/packages/com.anatawa12.custom-localization-for-editor-extension/

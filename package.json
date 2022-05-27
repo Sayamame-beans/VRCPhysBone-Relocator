@@ -6,7 +6,7 @@
     "name": "Sayamame-beans",
     "url": "https://github.com/Sayamame-beans"
   },
-  "dependencies": {
-    "com.anatawa12.custom-localization-for-editor-extension": "0.1.2"
+  "gitDependencies": {
+    "com.anatawa12.custom-localization-for-editor-extension": "https://github.com/anatawa12/CustomLocalization4EditorExtension.git#0.1.2"
   }
 }
