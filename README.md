@@ -8,6 +8,9 @@ PhysBoneコンポーネント類を\"Root Transform\"に設定されているゲ
 
 ## How to install/導入方法
 ### Using unitypackage file/unitypackageファイルを使った方法
+
+TODO: update how to install to support CusomLocalization4EditorExtension
+
 [EN]
 1. Download the latest version of unitypackage from [here](https://github.com/Sayamame-beans/VRCPhysBone-Relocator/releases).
 2. Import the unitypackage to your project.
@@ -53,3 +56,13 @@ I expect this will work properly, but please let me know if you find any problem
 Link:
 - [GitHub](https://github.com/Sayamame-beans/VRCPhysBone-Relocator)
 - [Booth](https://sayamame-beans.booth.pm/items/3872837)
+
+## To Build this project
+
+clone this repository into `Packages` folder in your project.
+
+In addition, because this project depends on [CustomLocalization4EditorExtension], you need to
+add `"com.github.sayamame-beans.vrcphysbone-relocator": "https://github.com/anatawa12/CustomLocalization4EditorExtension.git"`
+into `dependencies` block of `manifest.json` of your project.
+
+[CustomLocalization4EditorExtension]: https://openupm.com/packages/com.anatawa12.custom-localization-for-editor-extension/
