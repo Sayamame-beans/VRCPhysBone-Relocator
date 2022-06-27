@@ -12,7 +12,7 @@ public class RelocatorWindow : EditorWindow
     private Localization _localization = new Localization(
         "6384038aaded94ab598437c5a398be61", "ja");
 
-    private const string Version = "0.1.0";
+    private const string Version = "0.2.0";
 
     //methods
     [MenuItem("Tools/PB Relocator", false, 1)]
