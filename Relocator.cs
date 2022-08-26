@@ -7,9 +7,10 @@ public class RelocatorWindow : EditorWindow
 {
 //properties
     private static GameObject _source;
+    private static bool _doNotCheckChildren;
     private bool _wasMissingDetected;
 
-    private const string Version = "0.1.0";
+    private const string Version = "0.2.0";
     private static string _lang = "en-US";
 
     private static readonly Dictionary<string, Dictionary<string, string>> Texts =
@@ -23,6 +24,7 @@ public class RelocatorWindow : EditorWindow
                         "summary",
                         "Relocate the PhysBone and PhysBoneCollider Components to the object set in the \"Root Transform\".\nSet a GameObject which has the target PhysBone or PhysBoneCollider Components, and press \"Relocate!\"."
                     },
+                    { "doNotCheckChildren", "Don't check child objects"},
                     { "msgWhenError", "\n\nIf this error is unexpected, please contact the author of this extension." },
                     { "source", "Target GameObject" },
                     { "noSource", "You need to set a GameObject." },
@@ -38,6 +40,7 @@ public class RelocatorWindow : EditorWindow
                         "summary",
                         "PhysBoneコンポーネント類を\"Root Transform\"に設定されているゲームオブジェクトに再配置します。\n対象のPhysBoneコンポーネント類を含むゲームオブジェクトをセットし、\"Relocate!\"ボタンを押してください。"
                     },
+                    { "doNotCheckChildren", "子オブジェクトを確認しない"},
                     { "msgWhenError", "\n\nこのエラーに心当たりが無い場合は、この拡張の作者に連絡してみてください。" },
                     { "source", "対象のゲームオブジェクト" },
                     { "noSource", "ゲームオブジェクトをセットする必要があります。" },
@@ -63,6 +66,7 @@ public class RelocatorWindow : EditorWindow
 
         EditorGUILayout.LabelField(Texts[_lang]["summary"], EditorStyles.wordWrappedLabel);
 
+        _doNotCheckChildren = EditorGUILayout.Toggle(Texts[_lang]["doNotCheckChildren"], _doNotCheckChildren);
         _source = (GameObject)EditorGUILayout.ObjectField(Texts[_lang]["source"], _source, typeof(GameObject), true);
         if (_source == null)
         {
@@ -101,7 +105,7 @@ public class RelocatorWindow : EditorWindow
 
     private void RelocatePhysBoneComponent()
     {
-        foreach (var physBone in _source.GetComponents<VRCPhysBone>())
+        foreach (var physBone in _doNotCheckChildren ? _source.GetComponents<VRCPhysBone>() : _source.GetComponentsInChildren<VRCPhysBone>(true))
         {
             var rootTransform = physBone.rootTransform;
             if (rootTransform == null)
@@ -134,7 +138,7 @@ public class RelocatorWindow : EditorWindow
 
     private void RelocatePhysBoneColliderComponent()
     {
-        foreach (var physBoneCollider in _source.GetComponents<VRCPhysBoneCollider>())
+        foreach (var physBoneCollider in _doNotCheckChildren ? _source.GetComponents<VRCPhysBoneCollider>() : _source.GetComponentsInChildren<VRCPhysBoneCollider>(true))
         {
             var rootTransform = physBoneCollider.rootTransform;
             if (rootTransform == null)
